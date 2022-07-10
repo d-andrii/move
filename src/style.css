@@ -36,6 +36,42 @@ canvas {
 	width: 100vw;
 }
 
+#rules {
+	color: black;
+	column-gap: 40px;
+	display: flex;
+	font-size: 20px;
+	left: 50%;
+	padding: 40px;
+	pointer-events: none;
+	position: fixed;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	transition: opacity 0.2s ease;
+}
+
+#rules .col {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	row-gap: 20px;
+}
+
+#rules .box {
+	height: 20px;
+	width: 20px;
+}
+
+#rules .box.green {
+	background-color: #18d962;
+	box-shadow: 0 -4px 20px 0 #18d962;
+}
+
+#rules .box.red {
+	background-color: #bf3c2e;
+	box-shadow: 0 -4px 20px 0 #bf3c2e;
+}
+
 @media (max-width: 500px) {
 	#sub {
 		height: 120px;
@@ -45,5 +81,9 @@ canvas {
 @media (prefers-color-scheme: dark) {
 	body {
 		background-color: #000000;
+	}
+
+	#rules {
+		color: #eeeeee;
 	}
 }

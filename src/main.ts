@@ -154,6 +154,12 @@ function main() {
 			() => (app.theme = app.theme === Theme.Dark ? Theme.Light : Theme.Dark),
 		);
 
+	const rules = document.getElementById('rules')!;
+	setTimeout(() => {
+		rules.style.opacity = '0';
+		setTimeout(() => rules.remove(), 1000);
+	}, 4000);
+
 	app.start();
 }
 
