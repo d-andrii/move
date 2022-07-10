@@ -1,0 +1,25 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+canvas {
+	height: 100vh;
+	width: 100vw;
+}
+
+#ui {
+	font-family: monospace;
+	position: fixed;
+	right: 10px;
+	top: 10px;
+}
+
+#theme {
+	all: unset;
+	border: 1px solid #72727253;
+	border-radius: 10px;
+	cursor: pointer;
+	display: block;
+	padding: 4px 8px;
+}
