@@ -25,11 +25,19 @@ canvas {
 	padding: 4px 8px;
 }
 
+#sub {
+	background-color: rgba(0, 0, 0, 0.2);
+	backdrop-filter: saturate(160%) blur(30px);
+	bottom: 0;
+	height: 40px;
+	left: 0;
+	position: absolute;
+	width: 100vw;
+}
+
 @media (max-width: 500px) {
-	canvas {
-		border-bottom: 2px solid #72727253;
-		box-sizing: border-box;
-		height: calc(100vh - 100px);
+	#sub {
+		height: 120px;
 	}
 }
 

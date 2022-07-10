@@ -3,6 +3,11 @@ export enum Theme {
 	Dark,
 }
 
+export enum Size {
+	Desktop,
+	Mobile,
+}
+
 export interface WithPosition {
 	x: number;
 	y: number;

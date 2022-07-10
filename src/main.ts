@@ -1,12 +1,10 @@
 import './style.css';
 import {rand, randInt, clamp, intersect} from './helper';
-import {Theme} from './render';
+import {Size, Theme} from './render';
 import {AddPoint, Cube, SubtractPoint} from './cube';
 import {Player} from './player';
 
 class App {
-	public theme = Theme.Light;
-
 	private ctx: CanvasRenderingContext2D;
 	private cubes: Cube[] = [];
 	private player: Player;
@@ -23,10 +21,11 @@ class App {
 		return this.ctx.canvas.width;
 	}
 
-	constructor() {
-		const canvas = document.querySelector('canvas')!;
-		canvas.width = window.innerWidth;
-		canvas.height = window.innerHeight;
+	constructor(
+		canvas: HTMLCanvasElement,
+		public theme: Theme,
+		public size: Size,
+	) {
 		this.ctx = canvas.getContext('2d')!;
 
 		this.addPoint(AddPoint);
@@ -34,7 +33,7 @@ class App {
 		const playerSize = 100;
 		this.player = new Player(
 			this.width / 2 - playerSize / 2,
-			this.height - 20,
+			this.height - (this.size === Size.Mobile ? 140 : 60),
 			playerSize,
 		);
 
@@ -127,15 +126,26 @@ class App {
 }
 
 function main() {
-	const app = new App();
-	app.start();
+	const canvas = document.querySelector('canvas')!;
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
 
 	const themeMatcher = window.matchMedia('(prefers-color-scheme: dark)');
+	const mobileMatcher = window.matchMedia('(max-width: 500px)');
+	const app = new App(
+		canvas,
+		themeMatcher.matches ? Theme.Dark : Theme.Light,
+		mobileMatcher.matches ? Size.Mobile : Size.Desktop,
+	);
+
 	themeMatcher.addEventListener(
 		'change',
 		(event) => (app.theme = event.matches ? Theme.Dark : Theme.Light),
 	);
-	app.theme = themeMatcher.matches ? Theme.Dark : Theme.Light;
+	mobileMatcher.addEventListener(
+		'change',
+		(event) => (app.size = event.matches ? Size.Mobile : Size.Desktop),
+	);
 
 	document
 		.getElementById('theme')!
@@ -143,6 +153,8 @@ function main() {
 			'click',
 			() => (app.theme = app.theme === Theme.Dark ? Theme.Light : Theme.Dark),
 		);
+
+	app.start();
 }
 
 window.addEventListener('load', main);
