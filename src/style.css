@@ -1,4 +1,5 @@
 body {
+	background-color: #eeeeee;
 	margin: 0;
 	padding: 0;
 }
@@ -22,4 +23,18 @@ canvas {
 	cursor: pointer;
 	display: block;
 	padding: 4px 8px;
+}
+
+@media (max-width: 500px) {
+	canvas {
+		border-bottom: 2px solid #72727253;
+		box-sizing: border-box;
+		height: calc(100vh - 100px);
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	body {
+		background-color: #000000;
+	}
 }

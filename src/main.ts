@@ -39,6 +39,12 @@ class App {
 		);
 
 		canvas.addEventListener('mousemove', (event) => this.onMouseMove(event.x));
+		canvas.addEventListener('touchmove', (event) => {
+			event.preventDefault();
+			if (event.touches.length) {
+				this.onMouseMove(event.touches.item(0)!.pageX);
+			}
+		});
 	}
 
 	private addPoint(builder: typeof AddPoint | typeof SubtractPoint) {
